@@ -5,7 +5,8 @@ on:
     types: [closed]
 
 jobs:
-  dummy-action-on-pull-request:
+  publish_to_charmhub:
+    if: github.event.pull_request.merged == true # prevents the charm being published if the PR is closed but not merged
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
