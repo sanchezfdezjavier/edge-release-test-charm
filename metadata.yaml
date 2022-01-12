@@ -21,3 +21,4 @@ resources:
   httpbin-image:
     type: oci-image
     description: OCI image for httpbin (kennethreitz/httpbin)
+    upstream-source: docker.artifactory.magmacore.org/controller:latest
