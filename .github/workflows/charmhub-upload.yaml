@@ -14,3 +14,7 @@ jobs:
         uses: canonical/charmhub-upload-action@0.2.0
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-logs
+          path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/ # or path/to/artifact
