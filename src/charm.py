@@ -37,7 +37,7 @@ class EdgeReleaseTestCharm(CharmBase):
     def _on_httpbin_pebble_ready(self, event):
         """Define and start a workload using the Pebble API.
 
-        TODO: change this example to suit your needs.
+        TODO: Change this example to suit your needs.
         You'll need to specify the right entrypoint and environment
         configuration for your specific workload. Tip: you can see the
         standard entrypoint of an existing container using docker inspect
