@@ -13,12 +13,12 @@ summary: |
 
 # TEMPLATE-TODO: replace with containers for your workload (delete for non-k8s)
 containers:
-  httpbin:
-    resource: httpbin-image
+  edge-release-test-charm:
+    resource: edge-release-test-charm-image
 
 # TEMPLATE-TODO: each container defined above must specify an oci-image resource
 resources:
-  httpbin-image:
+  edge-release-test-charm-image:
     type: oci-image
-    description: OCI image for httpbin (kennethreitz/httpbin)
+    description: OCI image for edge-release-test-charm
     upstream-source: docker.artifactory.magmacore.org/controller:latest
