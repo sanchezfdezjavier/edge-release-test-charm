@@ -14,14 +14,13 @@ jobs:
   upload_to_charmhub:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🔎 The name of your branch is ${{ github.ref }}."
-      # - name: Check out repository code
-      #   uses: actions/checkout@v2
-      # - name: Upload to charmhub
-      #   uses: canonical/charmhub-upload-action@0.2.0
-      #   with:
-      #     credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Upload to charmhub
+        uses: ./charmhub-upload-action
+        with:
+          credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: my-logs

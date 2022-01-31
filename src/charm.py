@@ -12,7 +12,7 @@ develop a new k8s charm using the Operator Framework:
     https://discourse.charmhub.io/t/4208
 """
 
-# change
+# change, changes
 
 import logging
 
