@@ -12,6 +12,8 @@ develop a new k8s charm using the Operator Framework:
     https://discourse.charmhub.io/t/4208
 """
 
+# change
+
 import logging
 
 from ops.charm import CharmBase
