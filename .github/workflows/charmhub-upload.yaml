@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 # change
 # on:
 #   pull_request:
-#     branches: 
+#     branches:
 #       - main
 #     types: [closed]
 on:
@@ -12,7 +12,6 @@ on:
 
 jobs:
   upload_to_charmhub:
-    if: ${{ github.event.pull_request.merged }} # Avoids the action from being triggered when the PR is discarded
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
