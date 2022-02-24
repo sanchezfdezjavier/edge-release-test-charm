@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 
 class EdgeReleaseTestCharm(CharmBase):
-    """Charm the service."""
+    """Charm the service. change"""
 
     _stored = StoredState()
 
