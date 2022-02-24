@@ -33,7 +33,7 @@ jobs:
         with:
           credentials: "${{ secrets.CHARMHUB_TOKEN }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          # upload-image: "true"
+          upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
           charm-path: ./
 
