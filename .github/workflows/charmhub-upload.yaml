@@ -10,21 +10,29 @@ on:
       - "master"
 
 jobs:
-  upload_to_charmhub:
+  build:
+    name: Release to edge
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Select charmhub channel
-        uses: ./channel
-        id: channel
-
-      - name: Upload to charmhub
-        uses: ./upload-charm
         with:
-          credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+          fetch-depth: 0
+      # - name: Check libraries
+      #   uses: canonical/charming-actions/check-libraries@1.0.0
+      #   with:
+      #     credentials: "${{ secrets.CHARMHUB_TOKEN }}"
+      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Select charmhub channel
+        uses: canonical/charming-actions/channel@1.0.0
+        id: channel
+      - name: Upload charm to charmhub
+        uses: canonical/charming-actions/upload-charm@1.0.0
+        with:
+          credentials: "${{ secrets.CHARMHUB_TOKEN }}"
+          # github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
+          channel: "${{ steps.channel.outputs.name }}"
 
       # - uses: actions/upload-artifact@v2
       #   with:
