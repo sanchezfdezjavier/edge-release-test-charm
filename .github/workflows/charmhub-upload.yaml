@@ -35,6 +35,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
+          charm-path: ./
 
       # - uses: actions/upload-artifact@v2
       #   with:
