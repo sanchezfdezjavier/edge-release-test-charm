@@ -3,11 +3,11 @@ on:
   push:
     branches:
       - "track/*"
-      - "master"
+      - "main"
   pull_request:
     branches:
       - "track/*"
-      - "master"
+      - "main"
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
       - name: Upload charm to charmhub
         uses: canonical/charming-actions/upload-charm@1.0.0
         with:
-          credentials: "${{ secrets.CHARMHUB_TOKEN }}"
+          credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
