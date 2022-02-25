@@ -10,37 +10,37 @@ on:
       - "master"
 
 jobs:
-  build:
-    name: Release to edge
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      # - name: Check libraries
-      #   uses: canonical/charming-actions/check-libraries@1.0.0
-      #   with:
-      #     credentials: "${{ secrets.CHARMHUB_TOKEN }}"
-      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
+  # build:
+  name: Release to edge
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    # - name: Check libraries
+    #   uses: canonical/charming-actions/check-libraries@1.0.0
+    #   with:
+    #     credentials: "${{ secrets.CHARMHUB_TOKEN }}"
+    #     github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Select charmhub channel
-        uses: canonical/charming-actions/channel@1.0.0
-        id: channel
+    - name: Select charmhub channel
+      uses: canonical/charming-actions/channel@1.0.0
+      id: channel
 
-      - name: Upload charm to charmhub
-        uses: canonical/charming-actions/upload-charm@1.0.0
-        with:
-          credentials: "${{ secrets.CHARMHUB_TOKEN }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          upload-image: "false"
-          channel: "${{ steps.channel.outputs.name }}"
-          charm-path: ./
+    - name: Upload charm to charmhub
+      uses: canonical/charming-actions/upload-charm@1.0.0
+      with:
+        credentials: "${{ secrets.CHARMHUB_TOKEN }}"
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
+        upload-image: "false"
+        channel: "${{ steps.channel.outputs.name }}"
+        charm-path: ./
 
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-logs
-      #     path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/ # or path/to/artifact
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: my-logs
+    #     path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/ # or path/to/artifact
 # name: Test Charmhub Upload
 
 # jobs:
