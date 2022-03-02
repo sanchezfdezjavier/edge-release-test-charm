@@ -25,15 +25,14 @@ class Charmcraft {
 
   async uploadResources() {
     let resourceInfo = 'resources:\n';
+    const { name, images } = this.metadata();
     if (!this.uploadImage) {
       const msg =
         `No resources where uploaded as part of this build.\n` +
         `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
-      core.warning(msg);
-      return { flags: [''], resourceInfo: '' };
+      return { flags: ['--whatever`${name}`'], resourceInfo: '' };
     }
 
-    const { name, images } = this.metadata();
     const flags = await Promise.all(
       images.map(async ([resource_name, resource_image]) => {
         await this.uploadResource(resource_image, name, resource_name);
