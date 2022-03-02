@@ -34,7 +34,7 @@ jobs:
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          upload-image: "true"
+          upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
           charm-path: ./
 
