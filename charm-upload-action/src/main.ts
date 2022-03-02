@@ -34,7 +34,8 @@ import { Tagger, Snap, Charmcraft, Bundle, Ref, Artifact } from './services';
     await charmcraft.pack();
 
     const { flags, resourceInfo } = await charmcraft.uploadResources();
-    core.info("#1", flags)
+    core.warning("########################################################################")
+    core.warning(flags)
     const charmRevisions = await charmcraft.upload(channel, flags);
 
     // TODO: Needs to prefix the tag with the charm name

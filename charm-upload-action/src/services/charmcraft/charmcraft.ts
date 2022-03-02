@@ -117,8 +117,6 @@ class Charmcraft {
   async upload(channel: string, flags: string[]): Promise<string> {
     // as we don't know the name of the name of the charm file output, we'll need to glob for it.
     // however, we expect charmcraft pack to always output one charm file.
-    core.warning("########################################################################")
-    core.warning(flags)
     const globber = await glob.create('./*.charm');
     const paths = await globber.glob();
     const args = [
