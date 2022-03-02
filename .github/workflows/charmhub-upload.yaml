@@ -26,11 +26,11 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Select charmhub channel
-        uses: canonical/charming-actions/channel@1.0.0
+        uses: ./charm-upload-action
         id: channel
 
       - name: Upload charm to charmhub
-        uses: canonical/charming-actions/upload-charm@1.0.0
+        uses: ./charm-upload-action
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
