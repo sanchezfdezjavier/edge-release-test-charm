@@ -21680,9 +21680,7 @@ class Charmcraft {
                 resourceInfo += info;
                 return flag;
             })));
-            flags.forEach((flag) => {
-                console.log(flag);
-            });
+            core.warning('1#######################################################################################################################################');
             return { flags, resourceInfo };
         });
     }

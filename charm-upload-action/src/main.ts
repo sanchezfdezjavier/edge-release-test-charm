@@ -9,6 +9,11 @@ import { Tagger, Snap, Charmcraft, Bundle, Ref, Artifact } from './services';
     const charmPath = core.getInput('charm-path');
     const bundlePath = core.getInput('bundle-path');
 
+    // TODO: remove this
+    core.warning(
+      '1#######################################################################################################################################'
+    );
+
     const token = core.getInput('github-token') || process.env['GITHUB_TOKEN'];
     if (!token) {
       throw new Error(
