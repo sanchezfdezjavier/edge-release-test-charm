@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check libraries
-        uses: ./charm-upload-action/check-libraries
+        uses: ./charm-upload-
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
@@ -30,7 +30,7 @@ jobs:
         id: channel
 
       - name: Upload charm to charmhub
-        uses: ./charm-upload-action/upload-charm
+        uses: ./charm--charm
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
