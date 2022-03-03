@@ -21571,7 +21571,9 @@ class Charmcraft {
                 resourceInfo += info;
                 return flag;
             })));
-            core.warning(flags.toString());
+            flags.forEach((flag) => {
+                console.log(flag);
+            });
             return { flags, resourceInfo };
         });
     }
