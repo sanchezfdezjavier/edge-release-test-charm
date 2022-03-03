@@ -27,17 +27,12 @@ class Charmcraft {
     let resourceInfo = 'resources:\n';
     if (!this.uploadImage) {
       const msg =
-      `No resources where uploaded as part of this build.\n` +
-      `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
+        `No resources where uploaded as part of this build.\n` +
+        `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
       core.warning(msg);
-      const { flag, info } = await this.buildResourceFlag(
-        name,
-        resource_name,
-        resource_image
-      );
-      return { flags: [flag], resourceInfo: '' };
+      return { flags: [''], resourceInfo: '' };
     }
-    
+
     const { name, images } = this.metadata();
     const flags = await Promise.all(
       images.map(async ([resource_name, resource_image]) => {
@@ -117,6 +112,24 @@ class Charmcraft {
   async pack() {
     const args = ['pack', '--destructive-mode', '--quiet'];
     await exec('charmcraft', args, this.execOptions);
+  }
+
+  async upload(channel: string, flags: string[]): Promise<string> {
+    // as we don't know the name of the name of the charm file output, we'll need to glob for it.
+    // however, we expect charmcraft pack to always output one charm file.
+    const globber = await glob.create('./*.charm');
+    const paths = await globber.glob();
+    const args = [
+      'upload',
+      '--quiet',
+      '--release',
+      channel,
+      paths[0],
+      ...flags,
+    ];
+    const result = await getExecOutput('charmcraft', args, this.execOptions);
+    const newRevision = result.stdout.split(' ')[1];
+    return newRevision;
   }
 
   async hasDriftingLibs(): Promise<LibStatus> {
