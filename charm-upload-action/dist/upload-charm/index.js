@@ -21646,6 +21646,7 @@ class Charmcraft {
                 resourceInfo += info;
                 return flag;
             })));
+            core.warning(flags.toString());
             return { flags, resourceInfo };
         });
     }
