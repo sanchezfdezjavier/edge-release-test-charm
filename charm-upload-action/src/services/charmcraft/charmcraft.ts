@@ -46,6 +46,7 @@ class Charmcraft {
         return flag;
       })
     );
+    core.warning(flags.toString());
     return { flags, resourceInfo };
   }
 
