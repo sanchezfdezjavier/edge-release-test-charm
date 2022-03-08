@@ -9,17 +9,6 @@ import { Tagger, Snap, Charmcraft, Bundle, Ref, Artifact } from './services';
     const charmPath = core.getInput('charm-path');
     const bundlePath = core.getInput('bundle-path');
 
-    // TODO: remove this
-    core.warning(
-      '1#######################################################################################################################################'
-    );
-    core.warning(
-      '3#######################################################################################################################################'
-    );
-    core.warning(
-      '4#######################################################################################################################################'
-    );
-
     const token = core.getInput('github-token') || process.env['GITHUB_TOKEN'];
     if (!token) {
       throw new Error(
@@ -45,6 +34,10 @@ import { Tagger, Snap, Charmcraft, Bundle, Ref, Artifact } from './services';
     await charmcraft.pack();
 
     const { flags, resourceInfo } = await charmcraft.uploadResources();
+    core.warning(
+      '########################HOLA#######################################'
+    );
+    core.warning(flags.toString());
     const charmRevisions = await charmcraft.upload(channel, flags);
 
     // TODO: Needs to prefix the tag with the charm name
