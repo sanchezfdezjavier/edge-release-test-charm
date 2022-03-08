@@ -18,61 +18,20 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check libraries
-        uses: ./charm-upload-action/check-libraries
+        uses: ./charming-actions/check-libraries
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Select charmhub channel
-        uses: ./charm-upload-action/channel
+        uses: ./charming-actions/channel
         id: channel
 
       - name: Upload charm to charmhub
-        uses: ./charm-upload-action/upload-charm
+        uses: ./charming-actions/upload-charm
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
           charm-path: ./
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-logs
-      #     path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/ # or path/to/artifact
-# name: Test Charmhub Upload
-
-# jobs:
-#   test-charmhub-upload:
-#     runs-on: ubuntu-latest
-#     name: Test charmhub upload
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Check libraries
-#         uses: ./check-libraries
-#         with:
-#           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-#           github-token: "${{ secrets.GITHUB_TOKEN }}"
-#           charm-path: test-charm/
-
-#       - name: Select charmhub channel
-#         uses: ./channel
-#         id: channel
-
-#       - name: Upload charm to charmhub
-#         uses: ./upload-charm
-#         with:
-#           tag-prefix: test-charm
-#           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-#           charm-path: test-charm/
-#           upload-image: "true"
-#           channel: "${{ steps.channel.outputs.name }}"
-#           github-token: "${{ secrets.GITHUB_TOKEN }}"
-
-#       - name: Upload bundle to charmhub
-#         uses: ./upload-bundle
-#         with:
-#           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-#           bundle-path: test-bundle/
-#           github-token: "${{ secrets.GITHUB_TOKEN }}"
