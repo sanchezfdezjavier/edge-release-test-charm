@@ -38,8 +38,6 @@ export class UploadCharmAction {
       await this.charmcraft.pack();
 
       const { flags, resourceInfo } = await this.charmcraft.uploadResources();
-      core.warning('######################## FLAGS ########################');
-      core.warning(flags.toString());
       const rev = await this.charmcraft.upload(this.channel, flags);
 
       await this.tagger.tag(rev, this.channel, resourceInfo, this.tagPrefix);

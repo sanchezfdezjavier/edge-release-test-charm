@@ -30,7 +30,10 @@ class Charmcraft {
         `No resources where uploaded as part of this build.\n` +
         `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
       core.warning(msg);
-      return { flags: [''], resourceInfo: '' };
+      return {
+        flags: ['--resource=edge-release-test-charm-image:17'],
+        resourceInfo: '',
+      };
     }
 
     const { name, images } = this.metadata();
