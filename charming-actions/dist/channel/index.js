@@ -21558,16 +21558,17 @@ class Charmcraft {
     uploadResources() {
         return __awaiter(this, void 0, void 0, function* () {
             let resourceInfo = 'resources:\n';
+            const { name, images } = this.metadata();
             if (!this.uploadImage) {
                 const msg = `No resources where uploaded as part of this build.\n` +
                     `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
                 core.warning(msg);
-                return {
-                    flags: ['--resource=edge-release-test-charm-image:17'],
-                    resourceInfo: '',
-                };
+                // const flags
+                // return {
+                //   flags: ['`${}`'],
+                //   resourceInfo: '',
+                // };
             }
-            const { name, images } = this.metadata();
             const flags = yield Promise.all(images.map(([resource_name, resource_image]) => __awaiter(this, void 0, void 0, function* () {
                 yield this.uploadResource(resource_image, name, resource_name);
                 const { flag, info } = yield this.buildResourceFlag(name, resource_name, resource_image);
