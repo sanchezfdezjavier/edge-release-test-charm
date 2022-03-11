@@ -27,18 +27,6 @@ class Charmcraft {
     let resourceInfo = 'resources:\n';
     const { name, images } = this.metadata();
 
-    if (!this.uploadImage) {
-      const msg =
-        `No resources where uploaded as part of this build.\n` +
-        `If you wish to upload the OCI image, set 'upload-image' to 'true'`;
-      core.warning(msg);
-      // const flags
-      // return {
-      //   flags: ['`${}`'],
-      //   resourceInfo: '',
-      // };
-    }
-
     const flags = await Promise.all(
       images.map(async ([resource_name, resource_image]) => {
         if (!this.uploadImage) {
@@ -118,6 +106,8 @@ class Charmcraft {
     const images = Object.entries(metadata.resources || {})
       .filter(([, res]) => res.type === 'oci-image')
       .map(([name, res]) => [name, res['upstream-source']]);
+    // TODO: Remove
+    core.warning(images.toString());
     return { images, name: charmName };
   }
 
