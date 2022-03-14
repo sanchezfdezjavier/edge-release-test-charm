@@ -33,5 +33,6 @@ jobs:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
+          destructive-mode: "false"
           channel: "${{ steps.channel.outputs.name }}"
           charm-path: ./

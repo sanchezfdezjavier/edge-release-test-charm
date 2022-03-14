@@ -21620,6 +21620,8 @@ const yaml = __importStar(__nccwpck_require__(1917));
 class Charmcraft {
     constructor(token) {
         this.uploadImage = core.getInput('upload-image').toLowerCase() === 'true';
+        this.destructiveMode =
+            core.getInput('destructive-mode').toLowerCase() === 'true';
         this.token = token || core.getInput('credentials');
         this.execOptions = {
             env: Object.assign(Object.assign({}, process.env), { CHARMCRAFT_AUTH: this.token }),
@@ -21687,13 +21689,15 @@ class Charmcraft {
         const images = Object.entries(metadata.resources || {})
             .filter(([, res]) => res.type === 'oci-image')
             .map(([name, res]) => [name, res['upstream-source']]);
-        // TODO: Remove
-        core.warning(images.toString());
         return { images, name: charmName };
     }
     pack() {
         return __awaiter(this, void 0, void 0, function* () {
-            const args = ['pack', '--destructive-mode', '--quiet'];
+            let args = ['pack', '--destructive-mode', '--quiet'];
+            if (!this.destructiveMode) {
+                args = args.filter((arg) => arg !== '--destructive-mode');
+            }
+            core.warning(args.toString());
             yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
         });
     }

@@ -10,10 +10,13 @@ import { Metadata } from '../../types';
 
 class Charmcraft {
   private uploadImage: boolean;
+  private destructiveMode: boolean;
   private token: string;
   private execOptions: ExecOptions;
   constructor(token?: string) {
     this.uploadImage = core.getInput('upload-image').toLowerCase() === 'true';
+    this.destructiveMode =
+      core.getInput('destructive-mode').toLowerCase() === 'true';
     this.token = token || core.getInput('credentials');
     this.execOptions = {
       env: {
@@ -106,13 +109,15 @@ class Charmcraft {
     const images = Object.entries(metadata.resources || {})
       .filter(([, res]) => res.type === 'oci-image')
       .map(([name, res]) => [name, res['upstream-source']]);
-    // TODO: Remove
-    core.warning(images.toString());
     return { images, name: charmName };
   }
 
   async pack() {
-    const args = ['pack', '--destructive-mode', '--quiet'];
+    let args = ['pack', '--destructive-mode', '--quiet'];
+    if (!this.destructiveMode) {
+      args = args.filter((arg) => arg !== '--destructive-mode');
+    }
+    core.warning(args.toString());
     await exec('charmcraft', args, this.execOptions);
   }
 
