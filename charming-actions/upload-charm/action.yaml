@@ -26,6 +26,11 @@ inputs:
     default: 'true'
     description: |
       Set to false if you don't want to update the OCI image
+  destructive-mode:
+    required: false
+    default: 'true'
+    description: |
+      Set to false if you wish to pack the charm within an lxd container, instead of the host runner.
   credentials:
     required: true
     description: |
