@@ -115,7 +115,8 @@ class Charmcraft {
   async pack() {
     let args = ['pack', '--destructive-mode', '--quiet'];
     if (!this.destructiveMode) {
-      await exec('sudo usermod -aG lxd $(whoami)');
+      await exec('sudo usermod -aG lxd $USER');
+      await exec('newgrp lxd');
       args = args.filter((arg) => arg !== '--destructive-mode');
     }
     core.warning(args.toString());

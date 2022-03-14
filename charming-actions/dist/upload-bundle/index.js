@@ -21695,7 +21695,8 @@ class Charmcraft {
         return __awaiter(this, void 0, void 0, function* () {
             let args = ['pack', '--destructive-mode', '--quiet'];
             if (!this.destructiveMode) {
-                yield (0, exec_1.exec)('sudo usermod -aG lxd $(whoami)');
+                yield (0, exec_1.exec)('sudo usermod -aG lxd $USER');
+                yield (0, exec_1.exec)('newgrp lxd');
                 args = args.filter((arg) => arg !== '--destructive-mode');
             }
             core.warning(args.toString());
