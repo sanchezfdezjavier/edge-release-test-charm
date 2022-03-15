@@ -21698,7 +21698,8 @@ class Charmcraft {
             if (!this.destructiveMode) {
                 // args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
-                yield (0, exec_1.exec)('sudo charmcraft', args, this.execOptions);
+                // await exec('sudo charmcraft', args, this.execOptions);
+                yield (0, exec_1.exec)('sudo charmcraft pack --destructive-mode --verbose');
             }
             else {
                 core.warning(args.toString());
