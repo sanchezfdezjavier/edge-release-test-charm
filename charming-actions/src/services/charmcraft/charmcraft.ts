@@ -124,14 +124,15 @@ class Charmcraft {
       // /usr/bin/sudo lxd waitready
       // /usr/bin/sudo lxd init --auto
       // /usr/bin/sudo usermod -a -G lxd $USER
-      await exec('sudo apt-get remove -qy lxd lxd-client');
-      await exec('sudo snap install lxd');
-      await exec('sudo lxd waitready');
       await exec('sudo lxd init --auto');
       await exec('sudo usermod -a -G lxd runner');
-      await exec('sg lxd lxc project list');
-      // await exec('charmcraft', args, this.execOptions);
-      await exec('sg lxd "charmcraft pack --verbose"');
+      //       newgrp adm << END
+      // # You can do more lines than just this.
+      // echo 'This is running as group $(id -gn)'
+      // END
+      await exec('newgrp lxd << END');
+      await exec('charmcraft', args, this.execOptions);
+      await exec('END');
     } else {
       core.warning(args.toString());
       await exec('charmcraft', args, this.execOptions);
