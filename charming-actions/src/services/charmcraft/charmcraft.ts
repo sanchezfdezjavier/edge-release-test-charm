@@ -117,9 +117,12 @@ class Charmcraft {
     if (!this.destructiveMode) {
       await exec('sudo usermod -aG lxd runner');
       args = args.filter((arg) => arg !== '--destructive-mode');
+      core.warning(args.toString());
+      await exec('sg lxd charmcraft', args, this.execOptions);
+    } else {
+      core.warning(args.toString());
+      await exec('charmcraft', args, this.execOptions);
     }
-    core.warning(args.toString());
-    await exec('charmcraft', args, this.execOptions);
   }
 
   async upload(channel: string, flags: string[]): Promise<string> {

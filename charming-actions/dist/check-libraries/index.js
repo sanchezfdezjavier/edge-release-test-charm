@@ -21736,9 +21736,13 @@ class Charmcraft {
             if (!this.destructiveMode) {
                 yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
                 args = args.filter((arg) => arg !== '--destructive-mode');
+                core.warning(args.toString());
+                yield (0, exec_1.exec)('sg lxd charmcraft', args, this.execOptions);
             }
-            core.warning(args.toString());
-            yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
+            else {
+                core.warning(args.toString());
+                yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
+            }
         });
     }
     upload(channel, flags) {
