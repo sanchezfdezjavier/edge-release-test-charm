@@ -21715,7 +21715,8 @@ class Charmcraft {
                 yield (0, exec_1.exec)('sudo lxd init --auto');
                 yield (0, exec_1.exec)('sudo usermod -a -G lxd runner');
                 yield (0, exec_1.exec)('sg lxd lxc project list');
-                yield (0, exec_1.exec)('sg lxd charmcraft', args, this.execOptions);
+                // await exec('charmcraft', args, this.execOptions);
+                yield (0, exec_1.exec)('sg lxd "charmcraft pack --verbose"');
             }
             else {
                 core.warning(args.toString());
