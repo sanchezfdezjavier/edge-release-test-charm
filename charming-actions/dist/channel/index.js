@@ -21629,9 +21629,9 @@ class Charmcraft {
             if (!this.destructiveMode) {
                 args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
-                yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
-                yield (0, exec_1.exec)('sudo newgrp lxd');
                 yield (0, exec_1.exec)('sudo lxd init --auto');
+                yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
+                yield (0, exec_1.exec)('lxc project list');
                 yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
             }
             else {
