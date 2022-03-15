@@ -118,7 +118,7 @@ class Charmcraft {
       await exec('sudo usermod -aG lxd runner');
       args = args.filter((arg) => arg !== '--destructive-mode');
       core.warning(args.toString());
-      await exec('sg lxd charmcraft', args, this.execOptions);
+      await exec('sudo charmcraft', args, this.execOptions);
     } else {
       core.warning(args.toString());
       await exec('charmcraft', args, this.execOptions);
