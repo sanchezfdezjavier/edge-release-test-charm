@@ -38,4 +38,4 @@ jobs:
           upload-image: "false"
           destructive-mode: "false"
           channel: "${{ steps.channel.outputs.name }}"
-          charm-path: ./
+          charm-path: ./orc8r-certifier-operator
