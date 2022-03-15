@@ -21696,7 +21696,6 @@ class Charmcraft {
             let args = ['pack', '--destructive-mode', '--quiet'];
             if (!this.destructiveMode) {
                 yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
-                yield (0, exec_1.exec)('newgrp lxd');
                 args = args.filter((arg) => arg !== '--destructive-mode');
             }
             core.warning(args.toString());
