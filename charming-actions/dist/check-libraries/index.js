@@ -21738,20 +21738,10 @@ class Charmcraft {
             if (!this.destructiveMode) {
                 args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
-                // /usr/bin/sudo apt-get remove -qy lxd lxd-client
-                // /usr/bin/sudo snap install lxd
-                // /usr/bin/sudo lxd waitready
-                // /usr/bin/sudo lxd init --auto
-                // /usr/bin/sudo usermod -a -G lxd $USER
                 yield (0, exec_1.exec)('sudo lxd init --auto');
                 yield (0, exec_1.exec)('sudo usermod -a -G lxd runner');
-                //       newgrp adm << END
-                // # You can do more lines than just this.
-                // echo 'This is running as group $(id -gn)'
-                // END
-                yield (0, exec_1.exec)('newgrp lxd << END');
-                yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
-                yield (0, exec_1.exec)('newgrp lxd << END && charmcraft pack --verbose && END');
+                // await exec('charmcraft', args, this.execOptions);
+                yield (0, exec_1.exec)('exec sg lxd "charmcraft pack --verbose"');
             }
             else {
                 core.warning(args.toString());
