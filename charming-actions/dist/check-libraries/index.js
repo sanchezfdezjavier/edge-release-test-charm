@@ -21748,7 +21748,7 @@ class Charmcraft {
                 yield (0, exec_1.exec)('sudo lxd waitready');
                 yield (0, exec_1.exec)('sudo lxd init --auto');
                 yield (0, exec_1.exec)('sudo usermod -a -G lxd runner');
-                yield (0, exec_1.exec)('lxc project list');
+                yield (0, exec_1.exec)('sg lxd lxc project list');
                 yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
             }
             else {

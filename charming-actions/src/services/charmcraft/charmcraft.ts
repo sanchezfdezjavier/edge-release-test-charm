@@ -129,7 +129,7 @@ class Charmcraft {
       await exec('sudo lxd waitready');
       await exec('sudo lxd init --auto');
       await exec('sudo usermod -a -G lxd runner');
-      await exec('lxc project list');
+      await exec('sg lxd lxc project list');
       await exec('charmcraft', args, this.execOptions);
     } else {
       core.warning(args.toString());
