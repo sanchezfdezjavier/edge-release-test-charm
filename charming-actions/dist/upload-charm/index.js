@@ -21704,8 +21704,16 @@ class Charmcraft {
             if (!this.destructiveMode) {
                 args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
+                // /usr/bin/sudo apt-get remove -qy lxd lxd-client
+                // /usr/bin/sudo snap install lxd
+                // /usr/bin/sudo lxd waitready
+                // /usr/bin/sudo lxd init --auto
+                // /usr/bin/sudo usermod -a -G lxd $USER
+                yield (0, exec_1.exec)('sudo apt-get remove -qy lxd lxd-client');
+                yield (0, exec_1.exec)('sudo snap install lxd');
+                yield (0, exec_1.exec)('sudo lxd waitready');
                 yield (0, exec_1.exec)('sudo lxd init --auto');
-                yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
+                yield (0, exec_1.exec)('sudo usermod -a -G lxd runner');
                 yield (0, exec_1.exec)('lxc project list');
                 yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
             }
