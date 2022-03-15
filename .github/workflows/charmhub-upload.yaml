@@ -14,11 +14,11 @@ jobs:
     name: Release to edge
     runs-on: ubuntu-latest
     steps:
-      - name: Get runner username
-        run: whoami
-
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       - name: Check libraries
         uses: ./charming-actions/check-libraries
