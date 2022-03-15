@@ -21698,16 +21698,12 @@ class Charmcraft {
     }
     pack() {
         return __awaiter(this, void 0, void 0, function* () {
-            // TODO: redo
-            // let args = ['pack', '--destructive-mode', '--quiet'];
-            let args = ['pack', '--destructive-mode', '--verbose'];
+            let args = ['pack', '--destructive-mode', '--quiet'];
             if (!this.destructiveMode) {
+                yield (0, exec_1.exec)('sudo usermod -aG lxd runner');
                 args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
-                yield (0, exec_1.exec)('sudo lxd init --auto');
-                yield (0, exec_1.exec)('sudo usermod -a -G lxd runner');
-                // await exec('charmcraft', args, this.execOptions);
-                yield (0, exec_1.exec)('exec sg lxd "charmcraft pack --verbose"');
+                yield (0, exec_1.exec)('sudo charmcraft', args, this.execOptions);
             }
             else {
                 core.warning(args.toString());

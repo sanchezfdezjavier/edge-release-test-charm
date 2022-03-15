@@ -113,16 +113,12 @@ class Charmcraft {
   }
 
   async pack() {
-    // TODO: redo
-    // let args = ['pack', '--destructive-mode', '--quiet'];
-    let args = ['pack', '--destructive-mode', '--verbose'];
+    let args = ['pack', '--destructive-mode', '--quiet'];
     if (!this.destructiveMode) {
+      await exec('sudo usermod -aG lxd runner');
       args = args.filter((arg) => arg !== '--destructive-mode');
       core.warning(args.toString());
-      await exec('sudo lxd init --auto');
-      await exec('sudo usermod -a -G lxd runner');
-      // await exec('charmcraft', args, this.execOptions);
-      await exec('exec sg lxd "charmcraft pack --verbose"');
+      await exec('sudo charmcraft', args, this.execOptions);
     } else {
       core.warning(args.toString());
       await exec('charmcraft', args, this.execOptions);
