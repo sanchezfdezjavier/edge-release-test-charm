@@ -132,7 +132,7 @@ class Charmcraft {
       // END
       await exec('newgrp lxd << END');
       await exec('charmcraft', args, this.execOptions);
-      await exec('END');
+      await exec('newgrp lxd << END && charmcraft pack --verbose && END');
     } else {
       core.warning(args.toString());
       await exec('charmcraft', args, this.execOptions);

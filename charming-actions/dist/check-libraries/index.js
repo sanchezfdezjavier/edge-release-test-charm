@@ -21751,7 +21751,7 @@ class Charmcraft {
                 // END
                 yield (0, exec_1.exec)('newgrp lxd << END');
                 yield (0, exec_1.exec)('charmcraft', args, this.execOptions);
-                yield (0, exec_1.exec)('END');
+                yield (0, exec_1.exec)('newgrp lxd << END && charmcraft pack --verbose && END');
             }
             else {
                 core.warning(args.toString());
