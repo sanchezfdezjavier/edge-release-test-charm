@@ -118,8 +118,24 @@ class Charmcraft {
     if (!this.destructiveMode) {
       // args = args.filter((arg) => arg !== '--destructive-mode');
       core.warning(args.toString());
-      // await exec('sudo charmcraft', args, this.execOptions);
-      await exec('sudo charmcraft pack --destructive-mode --verbose');
+      //   - name: Configure LXD
+      //   run: |
+      //     sudo groupadd --force --system lxd
+      //     sudo usermod --append --groups lxd $USER
+      //     sudo snap start lxd
+      //     sudo lxd waitready --timeout=30
+      //     sudo lxd init --auto
+
+      // - name: Build my Charm
+      //   run: |
+      //     sg lxd -c "charmcraft -v pack"
+      //     ...
+      await exec('sudo groupadd --force --system lxd');
+      await exec('sudo usermod --append --groups lxd runner');
+      await exec('sudo snap start lxd');
+      await exec('sudo lxd waitready --timeout=30');
+      await exec('sudo lxd init --auto');
+      await exec('sg lxd -c "charmcraft pack --verbose"');
     } else {
       core.warning(args.toString());
       await exec('charmcraft', args, this.execOptions);
