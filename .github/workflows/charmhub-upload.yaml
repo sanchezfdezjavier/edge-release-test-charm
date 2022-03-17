@@ -28,6 +28,10 @@ jobs:
           sudo lxd waitready --timeout=30
           sudo lxd init --auto
 
+      - name: Install charmcraft
+        run: |
+          sudo snap install charmcraft --classic
+
       - name: Build my Charm
         run: |
           sg lxd -c "charmcraft -v pack"
