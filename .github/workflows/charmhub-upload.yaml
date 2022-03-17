@@ -28,9 +28,9 @@ jobs:
           sudo lxd waitready --timeout=30
           sudo lxd init --auto
 
-      # - name: Build my Charm
-      #   run: |
-      #     sg lxd -c "charmcraft -v pack"
+      - name: Build my Charm
+        run: |
+          sg lxd -c "charmcraft -v pack"
 
       # - name: Check libraries
       #   uses: ./charming-actions/check-libraries
