@@ -21638,7 +21638,6 @@ class Charmcraft {
                 // - name: Build my Charm
                 //   run: |
                 //     sg lxd -c "charmcraft -v pack"
-                //     ...
                 yield (0, exec_1.exec)('sudo groupadd --force --system lxd');
                 yield (0, exec_1.exec)('sudo usermod --append --groups lxd runner');
                 yield (0, exec_1.exec)('sudo snap start lxd');

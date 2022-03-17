@@ -129,7 +129,6 @@ class Charmcraft {
       // - name: Build my Charm
       //   run: |
       //     sg lxd -c "charmcraft -v pack"
-      //     ...
       await exec('sudo groupadd --force --system lxd');
       await exec('sudo usermod --append --groups lxd runner');
       await exec('sudo snap start lxd');
