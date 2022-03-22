@@ -40,28 +40,28 @@ jobs:
       #   run: |
       #     sg lxd -c "charmcraft -v pack"
 
-      # - name: Check libraries
-      #   uses: canonical/charming-actions/check-libraries@1.0.1
-      #   with:
-      #     credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
-
-      # - name: Select charmhub channel
-      #   uses: canonical/charming-actions/channel@1.0.1
-      #   id: channel
-
-      # - name: Upload charm to charmhub
-      #   uses: canonical/charming-actions/upload-charm@0.2.1
-      #   with:
-      #     credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
-      #     upload-image: "false"
-      #     destructive-mode: "false"
-      #     channel: "${{ steps.channel.outputs.name }}"
-      #     charm-path: ./orc8r-certifier-operator
-
-      - uses: canonical/charmhub-upload-action@0.2.1
+      - name: Check libraries
+        uses: canonical/charming-actions/check-libraries
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-          charm-path: ./orc8r-certifier-operator
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Select charmhub channel
+        uses: ./charming-actions-candidate/channel
+        id: channel
+
+      - name: Upload charm to charmhub
+        uses: ./charming-actions-candidate/upload-charm
+        with:
+          credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
+          destructive-mode: "false"
+          channel: "${{ steps.channel.outputs.name }}"
+          charm-path: ./orc8r-certifier-operator
+
+      # - uses: canonical/charmhub-upload-action@0.2.1
+      #   with:
+      #     credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+      #     charm-path: ./orc8r-certifier-operator
+      #     upload-image: "false"
