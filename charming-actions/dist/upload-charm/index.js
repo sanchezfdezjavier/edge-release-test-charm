@@ -21699,7 +21699,7 @@ class Charmcraft {
     pack() {
         return __awaiter(this, void 0, void 0, function* () {
             // let args = ['pack', '--destructive-mode', '--quiet'];
-            let args = ['pack', '--destructive-mode'];
+            let args = ['pack', '--destructive-mode', '--verbose'];
             if (!this.destructiveMode) {
                 // args = args.filter((arg) => arg !== '--destructive-mode');
                 core.warning(args.toString());
