@@ -41,7 +41,7 @@ jobs:
       #     sg lxd -c "charmcraft -v pack"
 
       - name: Check libraries
-        uses: canonical/charming-actions/check-libraries
+        uses: ./charming-actions-candidate/check-libraries
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
