@@ -41,17 +41,17 @@ jobs:
       #     sg lxd -c "charmcraft -v pack"
 
       - name: Check libraries
-        uses: ./charming-actions-candidate/check-libraries
+        uses: canonical/charming-actions/check-libraries@test-charm-rev74
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Select charmhub channel
-        uses: ./charming-actions-candidate/channel
+        uses: canonical/channel/check-libraries@test-charm-rev74
         id: channel
 
       - name: Upload charm to charmhub
-        uses: ./charming-actions-candidate/upload-charm
+        uses: canonical/charming-actions/upload-charm@test-charm-rev74
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
