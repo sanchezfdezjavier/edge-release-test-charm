@@ -47,7 +47,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Select charmhub channel
-        uses: canonical/channel/check-libraries@test-charm-rev74
+        uses: canonical/charming-actions/channel@test-charm-rev74
         id: channel
 
       - name: Upload charm to charmhub
