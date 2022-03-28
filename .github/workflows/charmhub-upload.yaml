@@ -17,9 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Preinstall deps
-        run: |
-          sudo apt-get update && sudo apt-get --no-install-recommends -y -oDpkg::Use-Pty=0 --allow-downgrades install cargo=0.58.0-0ubuntu1~20.04.1 libstd-rust-1.57=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1 libstd-rust-dev=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1 rustc=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1
+      # - name: Preinstall deps
+      #   run: |
+      #     sudo apt-get update && sudo apt-get --no-install-recommends -y -oDpkg::Use-Pty=0 --allow-downgrades install cargo=0.58.0-0ubuntu1~20.04.1 libstd-rust-1.57=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1 libstd-rust-dev=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1 rustc=1.57.0+dfsg1+llvm-0ubuntu1~20.04.1
 
       - name: Check libraries
         uses: canonical/charming-actions/check-libraries@test-charm-rev75
