@@ -38,7 +38,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           upload-image: "false"
           channel: "${{ steps.channel.outputs.name }}"
-          charm-path: ./orc8r-certifier-operator
+          tag-prefix: "test-edge-release-charm"
 
       # - uses: canonical/charmhub-upload-action@0.2.1
       #   with:
