@@ -17,11 +17,30 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Upload to charmhub
-        uses: ./charmhub-upload-action
+      # - name: Upload to charmhub
+      #   uses: ./charmhub-upload-action
+      #   with:
+      #     credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+
+      - name: Check libraries
+        uses: canonical/charming-actions/check-libraries@1.0.2
         with:
           credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-logs
-      #     path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/ # or path/to/artifact
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Select charmhub channel
+        uses: canonical/charming-actions/channel@1.0.2
+        id: channel
+
+      - name: Upload charm to charmhub
+        uses: canonical/charming-actions/upload-charm@1.0.2
+        with:
+          credentials: "${{ secrets.CHARMCRAFT_AUTH }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          upload-image: "false"
+          channel: "${{ steps.channel.outputs.name }}"
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Charmcraft logs
+          path: /home/runner/snap/charmcraft/common/cache/charmcraft/log/

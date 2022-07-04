@@ -37,14 +37,13 @@ class EdgeReleaseTestCharm(CharmBase):
         self._stored.set_default(things=[])
 
     def _on_httpbin_pebble_ready(self, event):
-        """Define and start a workload using the Pebble API.
+        """Define and start a workload using the Pebble API
 
         TODO: Change this example to suit your need.
         You'll need to specify the right entrypoint and environment
         configuration for your specific workload. Tip: you can see the
         standard entrypoint of an existing container using docker inspect
 
-        Learn more about Pebble layers at https://github.com/canonical/pebble
         """
         # Get a reference the container attribute on the PebbleReadyEvent
         container = event.workload
